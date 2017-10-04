@@ -1,0 +1,10 @@
+<div class='row text-center download' ng-controller='detailCtrl'>
+        <div class='col-md-4' ng-repeat='img in imgs'>
+                <img class='download-img' ng-src='{{ img.url }}' style='width:100%'>
+                <p>{{ img.name }}</p>
+                <button class='btn btn-outline-primary btn-block download-btn' ng-click='showDetails(img.id)'>Details</button>
+        </div>
+</div>
+
+<br><br>
+<hr class='hr-short'>

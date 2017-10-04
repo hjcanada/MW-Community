@@ -1,0 +1,35 @@
+<div class="row text-center" ng-controller='signupCtrl'>
+	<div class="col-md-12">
+	<img src='../assets/img/mw-signup-title.png' class='signup-title-img'/>
+	</div>
+	<div class="col-md-4"></div>
+	<div class="form-group col-md-4">
+		<h2 class="text-center" style='margin:0 0 1rem 0'>Join us today!</h2>
+		
+		<form>
+		<input class="form-control input-lg" type="text" placeholder="username" ng-model="username" required="required">
+		<br>
+		<input class="form-control input-lg" type="password" placeholder="password" ng-model="password" required="required">
+		<br>
+		<input class="form-control input-lg" type="password" placeholder="password confirm" ng-model="password_cf" required="required">
+		<br><br>
+
+		<div>
+			<div class="alert alert-danger" ng-show="showFailAlert">
+				<button type="button" class="close" data-ng-click="switchBool('showFailAlert')">x</button>
+				<strong>Error:</strong> {{ failTextAlert }}
+			</div>
+		</div>
+
+		<button class="btn btn-lg btn-outline-info btn-block" ng-click="signup()">Sign Up</button>
+		<br>
+		<a href="#/login" class='link-blue'>Already a member? Log in!</a>
+	</div>
+</div>
+
+<footer class='fixed-bottom text-center footer'>
+        <hr class='hr-short'>
+        <p>Developed by Jun Hu<p>
+        <p>Email: junhu.acl@gmail.com</p>
+</footer>
+

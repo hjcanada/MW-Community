@@ -1,0 +1,71 @@
+<div class='row' ng-controller='detailCtrl' style='width: 85%; margin: 0 auto'>
+
+	<div class='col-md-12 text-center'>
+		<h1 class='download-detail-title'>{{ img.name }}</h1>
+		<img ng-src='{{ img.url }}'/>
+	</div>
+
+
+	<table class='table table-striped col-md-12 download-detail-table'>
+		<thead>
+			<th></th>
+			<th class='text-right'>Manual</th>
+			<th class='text-right'>PDK</th>
+		</thead>
+		<tbody>
+			<tr>
+			<td class='text-left'>Horsepower</td>
+			<td class='text-right'>{{ img.perfManual.HP }}</td>
+			<td class='text-right'>{{ img.perfPDK.HP }}</td>
+			</tr>
+			<tr>
+			<td class='text-left'>0-60mph</td>
+			<td class='text-right'>{{ img.perfManual.ACC }}</td>
+			<td class='text-right'>{{ img.perfPDK.ACC }}</td>
+			</tr>
+			<tr>
+			<td class='text-left'>Top Track Speed</td>
+			<td class='text-right'>{{ img.perfManual.TTS }}</td>
+			<td class='text-right'>{{ img.perfPDK.TTS }}</td>
+			</tr>
+			<tr>
+			<td class='text-left'>Fuel Consumption City(estimate)</td>
+			<td class='text-right'>{{ img.perfManual.FCC }}</td>
+			<td class='text-right'>{{ img.perfPDK.FCC }}</td>
+			</tr>
+			<tr>
+			<td class='text-left'>Highway(estimate)</td>
+			<td class='text-right'>{{ img.perfManual.HC }}</td>
+			<td class='text-right'>{{ img.perfPDK.HC }}</td>
+			</tr>
+			<tr>
+			<td class='text-left'>MSRP</td>
+			<td class='text-right'>{{ img.perfManual.MSRP }}</td>
+			<td class='text-right'>{{ img.perfPDK.MSRP }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class='col-md-4 text-center' ng-repeat='url in urls'>
+		<img class='download-img-thumb' ng-src='{{ url }}'/>
+	</div>
+
+</div>
+
+<br>
+
+<div class='row text-center download-detail-btn' ng-controller='detailCtrl'>
+	<div class='col-md-2'></div>
+	<div class='col-md-3'>
+		<button class='btn btn-outline-primary btn-block' ng-click='goback()'>Back</button>
+	</div>
+	<div class='col-md-2'></div>
+	<div class='col-md-3'>
+		<button class='btn btn-outline-danger btn-block' ng-click=''>Download</button>
+	</div>
+	<div class='col-md-1'></div>
+</div>
+
+
+<br><hr><br>
+

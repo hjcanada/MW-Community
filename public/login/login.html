@@ -1,0 +1,48 @@
+<div class="row login-div">
+
+	<div class="col-md-12">
+		<img src="../assets/img/mw-login-title.png" class="login-title-img"/>
+	</div>
+
+	<div class="col-md-4">
+		<div>
+			<hr><br>
+
+			<form>
+			<p class="login-text">Username</p>
+			<input class="form-control" type="text" placeholder="username" ng-model="username" required="required">
+			<br>
+			<p class="login-text">Password</p>
+                        <input class="form-control" type="password" placeholder="password" ng-model="password" required="required">
+			<br><br>
+
+			<div ng-controller="loginCtrl">
+				<div class="alert alert-danger" ng-show="showFailAlert">
+					<button type="button" class="close" data-ng-click="switchBool('showFailAlert')">x</button>
+					<strong>Error:</strong> {{ failTextAlert }}
+				</div>
+			</div>
+
+			<button type="button" class="btn btn-outline-info btn-block login-btn" ng-click="login()">Log In</button>
+
+			<br>
+	
+			<a href="#/signup" class='link-blue'>Not a member? Sign Up!</a>
+			</form>
+		</div>
+	</div>
+
+	<!--<div class="col-md-1"></div>-->
+	<div class="col-md-8">
+			<img class="img-responsive login-img" src="../assets/img/mw-login.png" />
+
+	</div>
+		
+</div>
+
+<footer class='fixed-bottom text-center footer'>
+	<hr class='hr-short'>
+	<p>Developed by Jun Hu<p>
+	<p>Email: junhu.acl@gmail.com</p>
+</footer>
+
