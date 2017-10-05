@@ -25,11 +25,15 @@ angular.module('mwCommunity.download', ['ngRoute'])
 
 }])
 
-.controller('detailCtrl', ['$scope', '$location', '$http', '$rootScope', function($scope, $location, $http, $rootScope) {
+.controller('detailCtrl', ['$scope', '$location', '$http', '$rootScope', '$window', function($scope, $location, $http, $rootScope, $window) {
 
 	$http.get('download/details.json').then(function(res) {
 		$rootScope.imgs_thumb = res.data;
 	});
+
+	$scope.zoom = function(src) {
+		$window.open(src);
+	}
 
 	$scope.showDetails = function(id) {
 		for (var index in $rootScope.imgs) {

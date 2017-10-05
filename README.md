@@ -45,7 +45,8 @@ Database: MongoDB
 ### Download
 * Addons (car modifications for the game) are listed in the download page;
 * Details of each addons could be reviewed through the 'details' button;
-* Table of technical specs and photo gallery are designed in the detail page;
+* Technical specs table and photo gallery are designed in the detail page;
+* Thumbnail images in photo gallery could be zoomed in;
 
 ### About
 * Brief introduction of this application is presented through 'Jumbtron';

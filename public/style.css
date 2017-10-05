@@ -44,6 +44,11 @@ small {
   width: 80%;
 }
 
+.home-img {
+  width: 100%;
+  margin: 50px 0 0 0;
+}
+
 .about-jumbotron {
   margin: 0 auto;
   width: 90%;
@@ -210,11 +215,21 @@ small {
 
 .download {
   width: 85%;
-  margin: 2px auto;
+  margin: 0 auto;
+}
+
+.download-line {
+  margin: 30px auto;
+  width: 80%;
 }
 
 .download-btn {
   width: 50%;
+  margin: 0 auto;
+}
+
+.download-detail-page {
+  width: 85%;
   margin: 0 auto;
 }
 
