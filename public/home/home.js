@@ -10,6 +10,5 @@ angular.module('mwCommunity.home', ['ngRoute'])
 	})
 }])
 
-.controller('homeCtrl', ['$scope', function($scope) {
-
-}])
+.controller('homeCtrl', function() {
+})

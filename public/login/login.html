@@ -1,18 +1,18 @@
-<div class="row login-div">
+<div class="row login">
 
-	<div class="col-md-12">
-		<img src="../assets/img/mw-login-title.png" class="login-title-img"/>
+	<div class="col-md-12 login-icon">
+		<img ng-src="assets/img/mw-login-title.png"/>
 	</div>
 
-	<div class="col-md-4">
+	<div class="col-md-4 login-form">
 		<div>
 			<hr><br>
 
 			<form>
-			<p class="login-text">Username</p>
+			<p>Username</p>
 			<input class="form-control" type="text" placeholder="username" ng-model="username" required="required">
 			<br>
-			<p class="login-text">Password</p>
+			<p>Password</p>
                         <input class="form-control" type="password" placeholder="password" ng-model="password" required="required">
 			<br><br>
 
@@ -23,26 +23,27 @@
 				</div>
 			</div>
 
-			<button type="button" class="btn btn-outline-info btn-block login-btn" ng-click="login()">Log In</button>
+			<button type="button" class="btn btn-outline-info btn-block" ng-click="login()">Log In</button>
 
 			<br>
 	
-			<a href="#/signup" class='link-blue'>Not a member? Sign Up!</a>
+			<a href="#/signup">Not a member? Sign Up!</a>
 			</form>
 		</div>
 	</div>
 
-	<!--<div class="col-md-1"></div>-->
-	<div class="col-md-8">
-			<img class="img-responsive login-img" src="../assets/img/mw-login.png" />
+	<div class="col-md-8 login-image">
+			<img class="img-responsive" src="../assets/img/mw-login.png" />
 
 	</div>
 		
 </div>
 
-<footer class='fixed-bottom text-center footer'>
-	<hr class='hr-short'>
-	<p>Developed by Jun Hu<p>
-	<p>Email: junhu.acl@gmail.com</p>
+<footer>
+	<div class="login-footer">
+		<hr>
+		<p>Developed by Jun Hu<p>
+		<p>Email: junhu.acl@gmail.com</p>
+	</div>
 </footer>
 

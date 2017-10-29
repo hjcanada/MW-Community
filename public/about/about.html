@@ -1,58 +1,59 @@
-<div class="jumbotron about-jumbotron">
-	<div class="container">
-		<h1 class="display-4">Most-Wanted Community</h1>
-		<p>The Most-Wanted Community is an online forum-like platform designed and developed for Need-For-Speed Most-Wanted(2005) fans, who would like to make friends, share experiences, help others or ask for help, and download interesting addons. Currently, most of the functions and resources in this site are only accessible to the registered members. So please do not hesitate to join us, and you will not disappoint!</p>
-	</div>
-</div>
-
-<div class='row about-content' ng-controller='aboutCtrl'>
-	<div class='col-md-6 text-left'>
-		<h3 style='margin:30px 0 20px 0'><strong>Contact Us</strong></h3>
-		<p>Want to get in touch?</p>
-		<p>Send us email at&nbsp; <i><strong>administrator@mwcommunity.ca</strong></i></p>
-		<br><br>
-		<div class='row text-left'>
-			<div class='col-md-2'>
-				<a href='https://www.facebook.com/leagueautocity/'><img class='about-icon' ng-src='assets/img/facebook-logo.png'/></a>
-			</div>
-			<div class='col-md-2'>
-				<a href='https://twitter.com'><img class='about-icon' ng-src='assets/img/twitter-logo.png'/></a>
-			</div>
-			<div class='col-md-2'>
-				<a href='https//www.instagram.com'><img class='about-icon' ng-src='assets/img/instagram-logo.png'/></a>
-			</div>
+<div class="about">
+	<div class="jumbotron">
+		<div class="container">
+			<h1 class="display-4">Most-Wanted Community</h1>
+			<p>The Most-Wanted Community is an online forum-like platform designed and developed for Need-For-Speed Most-Wanted(2005) fans, who would like to make friends, share experiences, help others or ask for help, and download interesting addons. Currently, most of the functions and resources in this site are only accessible to the registered members. So please do not hesitate to join us, and you will not disappoint!</p>
 		</div>
 	</div>
 
-	<div class='col-md-6'>
-		<h3 class='text-center' style='margin: 30px 0 20px 0'><strong>Help Us Improve</strong></h3>
-		<form class='row text-left'>
-			<div class='col-md-6'>
-				<p>Username/Nickname</p>
-				<input class='form-control input-lg' type='text' ng-model='name' required='required'>
+	<div class='row about-detail' ng-controller='aboutCtrl'>
+		<div class='col-md-6 text-left'>
+			<h3><strong>Contact Us</strong></h3>
+			<p>Want to get in touch?</p>
+			<p>Send us email at&nbsp; <i><strong>administrator@mwcommunity.ca</strong></i></p>
+			<br><br>
+			<div class='row'>
+				<div class='col-md-2'>
+					<a href='https://www.facebook.com/leagueautocity/'><img ng-src='assets/img/facebook-logo.png'/></a>
+				</div>
+				<div class='col-md-2'>
+					<a href='https://twitter.com'><img ng-src='assets/img/twitter-logo.png'/></a>
+				</div>
+				<div class='col-md-2'>
+					<a href='https//www.instagram.com'><img ng-src='assets/img/instagram-logo.png'/></a>
+				</div>
 			</div>
-			<div class='col-md-6'>
-				<p>E-mail</p>
-				<input class='form-control input-lg' type='text' ng-model='email' required='required'>
-			</div>
+		</div>
 
-			<div class='col-md-12'>
-				<br>
-				<p>Your Suggestions/Opinions</p>
-				<textarea type='text' class='form-control' col='10' row='6' placeholder='write your opnions here' ng-model='message' required='required'></textarea>
-				<br><br>
-			</div>
+		<div class='col-md-6'>
+			<h3 class='text-center'><strong>Help Us Improve</strong></h3>
+			<form class='row text-left'>
+				<div class='col-md-6'>
+					<p>Username/Nickname</p>
+					<input class='form-control input-lg' type='text' ng-model='name' required='required'>
+				</div>
+				<div class='col-md-6'>
+					<p>E-mail</p>
+					<input class='form-control input-lg' type='text' ng-model='email' required='required'>
+				</div>
 
-			<div class='col-md-12'>
-				<button class='btn btn-outline-info btn-block about-btn' ng-click='opiSubmit()'>Submit</button>
-			</div>
-		</form>
+				<div class='col-md-12'>
+					<br>
+					<p>Your Suggestions/Opinions</p>
+					<textarea type='text' class='form-control' col='10' row='6' placeholder='write your opnions here' ng-model='message' required='required'></textarea>
+					<br><br>
+				</div>
+
+				<div class='col-md-12'>
+					<button class='btn btn-outline-info btn-block' ng-click='opiSubmit()'>Submit</button>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
 
-<footer class='fixed-bottom text-center footer'>
-        <hr class='hr-short'>
+<footer>
+        <hr>
         <p>Developed by Jun Hu<p>
         <p>Email: junhu.acl@gmail.com</p>
 </footer>
-

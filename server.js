@@ -554,6 +554,14 @@ app.post('/opinion', function(req, res, next) {
 	});
 });
 
+/* For Heroku */
+/*
+app.listen(process.env.PORT, function() {
+	console.log('Server is up, listening on Port %d', this.address().port());
+});
+*/
+
+/* For local test */
 app.listen(port, function() {
-	console.log('Server is up');
+	console.log('Server is up, listening on Port %d', port);
 });

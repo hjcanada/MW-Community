@@ -1,9 +1,9 @@
-<div class="row text-center" ng-controller='signupCtrl'>
-	<div class="col-md-12">
-	<img src='../assets/img/mw-signup-title.png' class='signup-title-img'/>
+<div class="row text-center signup" ng-controller='signupCtrl'>
+	<div class="col-md-12 signup-icon">
+		<img src='../assets/img/mw-signup-title.png'/>
 	</div>
 	<div class="col-md-4"></div>
-	<div class="form-group col-md-4">
+	<div class="form-group col-md-4 signup-form">
 		<h2 class="text-center" style='margin:0 0 1rem 0'>Join us today!</h2>
 		
 		<form>
@@ -23,13 +23,15 @@
 
 		<button class="btn btn-lg btn-outline-info btn-block" ng-click="signup()">Sign Up</button>
 		<br>
-		<a href="#/login" class='link-blue'>Already a member? Log in!</a>
+		<a href="#/login">Already a member? Log in!</a>
 	</div>
 </div>
 
-<footer class='fixed-bottom text-center footer'>
-        <hr class='hr-short'>
-        <p>Developed by Jun Hu<p>
-        <p>Email: junhu.acl@gmail.com</p>
+<footer>
+	<div class="signup-footer">
+		<hr>
+		<p>Developed by Jun Hu<p>
+		<p>Email: junhu.acl@gmail.com</p>
+	</div>
 </footer>
 

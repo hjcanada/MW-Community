@@ -1,80 +1,78 @@
 <!DOCTYPE html>
 <html lang="en" ng-app='mwCommunity'>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Most Wanted Community</title>
+	<title>Most Wanted Community</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap core CSS -->
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="style.css" rel="stylesheet">
-  </head>
+	<!-- Custom styles for this template -->
+	<link href="style.css" rel="stylesheet">
+</head>
 
-  <body>
+<body>
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#/home">Most Wanted</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#/home">Home</a>
-          </li>
-          <li class="nav-item" ng-show='currentUser'>
-            <a class="nav-link" href="#/channel">Channel</a>
-          </li>
-          <li class="nav-item" ng-show='currentUser'>
-            <a class="nav-link" href="#/download">Download</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#/about">About</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav mt-2 mt-md-0">
-          <li class="nav-item" ng-show='currentUser' ng-controller='profileCtrl'>
-            <a class="nav-link" href="javascript:void(0)" ng-click='getMyProfile()'>My Profile</a>
-          </li>
-          <li class="nav-item" ng-show='currentUser' ng-controller='loginCtrl'>
-            <a class="nav-link" href='javascript:void(0)' ng-click='logout()'>Log Out</a>
-          </li>
-          <li class="nav-item" ng-hide='currentUser'>
-            <a class="nav-link" href="#/login">Log In</a>
-          </li>
-          <li class="nav-item" ng-hide='currentUser'>
-            <a class="nav-link" href="#/signup">Sign Up</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+		<a class="navbar-brand" href="#/home">Most Wanted</a>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="#/home">Home</a>
+				</li>
+				<li class="nav-item" ng-show='currentUser'>
+					<a class="nav-link" href="#/channel">Channel</a>
+				</li>
+				<li class="nav-item" ng-show='currentUser'>
+					<a class="nav-link" href="#/download">Download</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#/about">About</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav mt-2 mt-md-0">
+				<li class="nav-item" ng-show='currentUser' ng-controller='profileCtrl'>
+					<a class="nav-link" href="javascript:void(0)" ng-click='getMyProfile()'>My Profile</a>
+				</li>
+				<li class="nav-item" ng-show='currentUser' ng-controller='loginCtrl'>
+					<a class="nav-link" href='javascript:void(0)' ng-click='logout()'>Log Out</a>
+				</li>
+				<li class="nav-item" ng-hide='currentUser'>
+					<a class="nav-link" href="#/login">Log In</a>
+				</li>
+				<li class="nav-item" ng-hide='currentUser'>
+					<a class="nav-link" href="#/signup">Sign Up</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 
-    <div class="container main-container">
-	<div ng-view></div>
-    </div>
+	<div class="container">
+		<div ng-view></div>
+	</div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <link rel="import" href="bower_components/bs-glyphicon/bs-glyphicon.html">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
-    <script src="bower_components/popper.js/dist/popper.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-    <script src='app.js'></script>
-    <script src='home/home.js'></script>
-    <script src='login/login.js'></script>
-    <script src='signup/signup.js'></script>
-    <script src='profile/profile.js'></script>
-    <script src='about/about.js'></script>
-    <script src='channel/channel.js'></script>
-    <script src='download/download.js'></script>
-  </body>
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<link rel="import" href="bower_components/bs-glyphicon/bs-glyphicon.html">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
+	<script src="bower_components/popper.js/dist/popper.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+	<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+	<script src='app.js'></script>
+	<script src='home/home.js'></script>
+	<script src='login/login.js'></script>
+	<script src='signup/signup.js'></script>
+	<script src='profile/profile.js'></script>
+	<script src='about/about.js'></script>
+	<script src='channel/channel.js'></script>
+	<script src='download/download.js'></script>
+</body>
+
 </html>

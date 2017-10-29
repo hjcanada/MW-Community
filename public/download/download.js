@@ -57,4 +57,8 @@ angular.module('mwCommunity.download', ['ngRoute'])
 		$location.path('/download');
 	};
 
+	$scope.download = function() {
+		$window.open('https://www.mediafire.com/');
+	};
+
 }])

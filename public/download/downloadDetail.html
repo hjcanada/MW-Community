@@ -1,4 +1,4 @@
-<div class='row download-detail-page' ng-controller='detailCtrl'>
+<div class='row download-detail' ng-controller='detailCtrl'>
 
 	<div class='col-md-12 text-center'>
 		<h1 class='download-detail-title'>{{ img.name }}</h1>
@@ -9,8 +9,8 @@
 	<table class='table table-striped col-md-12 download-detail-table'>
 		<thead>
 			<th></th>
-			<th class='text-right'>Manual</th>
-			<th class='text-right'>PDK</th>
+			<th class="text-right">Manual</th>
+			<th class="text-right">PDK</th>
 		</thead>
 		<tbody>
 			<tr>
@@ -46,8 +46,8 @@
 		</tbody>
 	</table>
 
-	<div class='col-md-4 text-center' ng-repeat='url in urls'>
-		<img class='download-img-thumb' ng-src='{{ url }}' ng-click='zoom(url)'/>
+	<div class='col-md-4 text-center download-detail-thumb' ng-repeat='url in urls'>
+		<img ng-src='{{ url }}' ng-click='zoom(url)'/>
 	</div>
 
 </div>
@@ -61,7 +61,7 @@
 	</div>
 	<div class='col-md-2'></div>
 	<div class='col-md-3'>
-		<a href='https://www.mediafire.com/'><button class='btn btn-outline-danger btn-block'>Download</button></a>
+		<button class='btn btn-outline-danger btn-block' ng-click='download()'>Download</button>
 	</div>
 	<div class='col-md-1'></div>
 </div>

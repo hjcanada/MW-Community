@@ -1,216 +1,207 @@
-<div class='row' ng-controller='profileCtrl'>
-	<div class='col-md-12 text-center'>
-		<img class='profile-avatar' src='assets/img/profile-avatar-sample.jpg'/>
-		<h4 class='profile-header'>{{ profileUser.username | uppercase }}</h4>
-		<p class='profile-header-text'>Lastest Login: {{ profileUser.lastDate }} {{ profileUser.lastTime }}</p>
+<div class="profile">
+	<div class='row' ng-controller='profileCtrl'>
+		<div class='col-md-12 text-center profile-header'>
+			<img src='assets/img/profile-avatar-sample.jpg'/>
+			<h4>{{ profileUser.username | uppercase }}</h4>
+			<p>Lastest Login: {{ profileUser.lastDate }} {{ profileUser.lastTime }}</p>
+		</div>
+	</div>
+
+	<hr>
+
+	<div class='row text-center profile-form1'>
+		<div class='col-md-4'>
+			<p>Posts</p>
+		</div>
+		<div class='col-md-4'>
+			<p>Comments</p>
+		</div>
+		<div class='col-md-4'>
+			<p>Contributions</p>
+		</div>
+	</div>
+
+	<div class='row text-center profile-form2' ng-controller='profileCtrl'>
+		<div class='col-md-4'>
+			<p>{{ profileUser.posts }}</p>
+		</div>
+		<div class='col-md-4'>
+			<p>{{ profileUser.comments }}</p>
+		</div>
+		<div class='col-md-4'>
+			<p>{{ profileUser.points }}</p>
+		</div>
+	</div>
+
+	<br><br>
+	<div class='row text-center profile-form3' ng-controller='profileCtrl'>
+		<div class='col-md-4'>
+		<table class='table table-striped profile-form-left'>
+			<tbody>
+				<tr><td>Gender</td></tr>
+				<tr><td>E-mail</td></tr>
+				<tr><td>Facebook</td></tr>
+				<tr><td>Twitter</td></tr>
+				<tr><td>Joined Date</td></tr>
+			<tbody>
+		</table>
+		</div>
+
+		<div class='col-md-8'>	
+		<table class='table table-striped profile-form-right'>
+			<tbody>
+				<tr>
+				<td>
+					<form class='row form-group' ng-show='profileUser.gender && !showGender'>
+						<div class='col-md-8'>
+							{{ profileUser.gender }}
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='switchBoolGender()'>Edit</button>
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='editGender(1)'>Delete</button>
+						</div>
+					</form>
+					<form class='row form-group'>
+						<div class='col-md-5'></div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-hide='profileUser.gender || showGender' ng-click='switchBoolGender()'>Add</button>
+						</div>
+						<div class='col-md-5'></div>
+					</form>
+					<form class='row form-group' ng-show='showGender'>
+						<div class='col-md-8'>
+							<select class='selectpicker form-control' ng-model='$parent.gender'>
+								<option>Male</option>
+								<option>Female</option>
+							</select>
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='editGender(0)'>Save</button>
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='switchBoolGender()'>Cancel</button>
+						</div>
+					</form>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<form class='row form-group' ng-show='profileUser.email && !showEmail'>
+						<div class='col-md-8'>
+							{{ profileUser.email }}
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='switchBoolEmail()'>Edit</button>
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='editEmail(1)'>Delete</button>
+						</div>
+					</form>
+					<form class='row form-group'>
+						<div class='col-md-5'></div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-hide='profileUser.email || showEmail' ng-click='switchBoolEmail()'>Add</button>
+						</div>
+						<div class='col-md-5'></div>
+					</form>
+					<form class='row form-group' ng-show='showEmail'>
+						<div class='col-md-8'>
+							<input class='form-control' type='text' ng-model='$parent.email'>
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='editEmail(0)'>Save</button>
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='switchBoolEmail()'>Cancel</button>
+						</div>
+					</form>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<form class='row form-group' ng-show='profileUser.facebook && !showFacebook'>
+						<div class='col-md-8'>
+							{{ profileUser.facebook }}
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='switchBoolFacebook()'>Edit</button>
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='editFacebook(1)'>Delete</button>
+						</div>
+					</form>
+					<form class='row form-group'>
+						<div class='col-md-5'></div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-hide='profileUser.facebook || showFacebook' ng-click='switchBoolFacebook()'>Add</button>
+						</div>
+						<div class='col-md-5'></div>
+					</form>
+					<form class='row form-group' ng-show='showFacebook'>
+						<div class='col-md-8'>
+							<input class='form-control' type='text' ng-model='$parent.facebook'>
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='editFacebook(0)'>Save</button>
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='switchBoolFacebook()'>Cancel</button>
+						</div>
+					</form>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<form class='row form-group' ng-show='profileUser.twitter && !showTwitter'>
+						<div class='col-md-8'>
+							{{ profileUser.twitter }}
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='switchBoolTwitter()'>Edit</button>
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='editTwitter(1)'>Delete</button>
+						</div>
+					</form>
+					<form class='row form-group'>
+						<div class='col-md-5'></div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-hide='profileUser.twitter || showTwitter' ng-click='switchBoolTwitter()'>Add</button>
+						</div>
+						<div class='col-md-5'></div>
+					</form>
+					<form class='row form-group' ng-show='showTwitter'>
+						<div class='col-md-8'>
+							<input class='form-control' type='text' ng-model='$parent.twitter'>
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='editTwitter(0)'>Save</button>
+						</div>
+						<div class='col-md-2'>
+							<button class='btn btn-sm btn-block' ng-click='switchBoolTwitter()'>Cancel</button>
+						</div>
+					</form>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<form class='row form-group profile-join'>
+						<div class='col-md-12'>
+							{{ profileUser.joinDate }} {{ profileUser.joinTime }}
+						</div>
+					</form>
+				</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
 	</div>
 </div>
 
-<hr class='profile-table1'>
-
-<div class='row text-center profile-table1'>
-	<div class='col-md-4'>
-		<p>Posts</p>
-	</div>
-	<div class='col-md-4'>
-		<p>Comments</p>
-	</div>
-	<div class='col-md-4'>
-		<p>Contributions</p>
-	</div>
-</div>
-
-<div class='row text-center profile-table2' ng-controller='profileCtrl'>
-	<div class='col-md-4'>
-		<p>{{ profileUser.posts }}</p>
-	</div>
-	<div class='col-md-4'>
-		<p>{{ profileUser.comments }}</p>
-	</div>
-	<div class='col-md-4'>
-		<p>{{ profileUser.points }}</p>
-	</div>
-</div>
-
-<br><br>
-<div class='row text-center profile-table3' ng-controller='profileCtrl'>
-	<div class='col-md-4'>
-	<table class='table table-striped'>
-		<tbody>
-			<tr class='profile-left-tbody'>
-			<td>Gender</td>
-			</tr>
-			<tr class='profile-left-tbody'>
-			<td>E-mail</td>
-			</tr>
-			<tr class='profile-left-tbody'>
-			<td>Facebook</td>
-			</tr>
-			<tr class='profile-left-tbody'>
-			<td>Twitter</td>
-			</tr>
-			<tr class='profile-left-tbody'>
-			<td>Joined Date</td>
-			</tr>
-		<tbody>
-	</table>
-	</div>
-
-	<div class='col-md-8'>	
-	<table class='table table-striped'>
-		<tbody>
-			<tr>
-			<td>
-				<form class='row form-group profile-right-tbody' ng-show='profileUser.gender && !showGender'>
-					<div class='col-md-8'>
-						{{ profileUser.gender }}
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='switchBoolGender()'>Edit</button>
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='editGender(1)'>Delete</button>
-					</div>
-				</form>
-				<form class='row form-group profile-right-tbody'>
-					<div class='col-md-5'></div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-hide='profileUser.gender || showGender' ng-click='switchBoolGender()'>Add</button>
-					</div>
-					<div class='col-md-5'></div>
-				</form>
-				<form class='row form-group profile-selector' ng-show='showGender'>
-					<div class='col-md-8'>
-						<select class='selectpicker form-control' ng-model='$parent.gender'>
-							<option>Male</option>
-							<option>Female</option>
-						</select>
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='editGender(0)'>Save</button>
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='switchBoolGender()'>Cancel</button>
-					</div>
-				</form>
-			</td>
-			</tr>
-			<tr>
-			<td>
-				<form class='row form-group profile-right-tbody' ng-show='profileUser.email && !showEmail'>
-					<div class='col-md-8'>
-						{{ profileUser.email }}
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='switchBoolEmail()'>Edit</button>
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='editEmail(1)'>Delete</button>
-					</div>
-				</form>
-				<form class='row form-group profile-right-tbody'>
-					<div class='col-md-5'></div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-hide='profileUser.email || showEmail' ng-click='switchBoolEmail()'>Add</button>
-					</div>
-					<div class='col-md-5'></div>
-				</form>
-				<form class='row form-group profile-selector' ng-show='showEmail'>
-					<div class='col-md-8'>
-						<input class='form-control' type='text' ng-model='$parent.email'>
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='editEmail(0)'>Save</button>
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='switchBoolEmail()'>Cancel</button>
-					</div>
-				</form>
-			</td>
-			</tr>
-			<tr>
-			<td>
-				<form class='row form-group profile-right-tbody' ng-show='profileUser.facebook && !showFacebook'>
-					<div class='col-md-8'>
-						{{ profileUser.facebook }}
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='switchBoolFacebook()'>Edit</button>
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='editFacebook(1)'>Delete</button>
-					</div>
-				</form>
-				<form class='row form-group profile-right-tbody'>
-					<div class='col-md-5'></div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-hide='profileUser.facebook || showFacebook' ng-click='switchBoolFacebook()'>Add</button>
-					</div>
-					<div class='col-md-5'></div>
-				</form>
-				<form class='row form-group profile-selector' ng-show='showFacebook'>
-					<div class='col-md-8'>
-						<input class='form-control' type='text' ng-model='$parent.facebook'>
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='editFacebook(0)'>Save</button>
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='switchBoolFacebook()'>Cancel</button>
-					</div>
-				</form>
-			</td>
-			</tr>
-			<tr>
-			<td>
-				<form class='row form-group profile-right-tbody' ng-show='profileUser.twitter && !showTwitter'>
-					<div class='col-md-8'>
-						{{ profileUser.twitter }}
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='switchBoolTwitter()'>Edit</button>
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='editTwitter(1)'>Delete</button>
-					</div>
-				</form>
-				<form class='row form-group profile-right-tbody'>
-					<div class='col-md-5'></div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-hide='profileUser.twitter || showTwitter' ng-click='switchBoolTwitter()'>Add</button>
-					</div>
-					<div class='col-md-5'></div>
-				</form>
-				<form class='row form-group profile-selector' ng-show='showTwitter'>
-					<div class='col-md-8'>
-						<input class='form-control' type='text' ng-model='$parent.twitter'>
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='editTwitter(0)'>Save</button>
-					</div>
-					<div class='col-md-2'>
-						<button class='btn btn-sm btn-block' ng-click='switchBoolTwitter()'>Cancel</button>
-					</div>
-				</form>
-			</td>
-			</tr>
-			<tr>
-			<td>
-				<form class='row form-group profile-join'>
-					<div class='col-md-12'>
-						{{ profileUser.joinDate }} {{ profileUser.joinTime }}
-					</div>
-				</form>
-			</td>
-			</tr>
-		</tbody>
-	</table>
-	</div>
-			
-</div>
-
-<footer class='fixed-bottom text-center footer'>
-        <hr class='hr-short'>
+<footer>
+        <hr>
         <p>Developed by Jun Hu<p>
         <p>Email: junhu.acl@gmail.com</p>
 </footer>

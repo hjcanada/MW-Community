@@ -1,10 +1,10 @@
-<div class="row channel-row" ng-controller="channelCtrl">
-	<div class="col-md-3 text-center channel-left-col">
-		<img class="img-responsive channel-avatar" src="../assets/img/profile-avatar-sample.jpg" />
+<div class="row channel" ng-controller="channelCtrl">
+	<div class="col-md-3 text-center channel-left">
+		<img class="img-responsive channel-avatar" ng-src="assets/img/profile-avatar-sample.jpg" />
 		<h5>HELLO, {{ currentUser.username | uppercase }}</h5>
 		<hr>
 
-		<div class="row text-center">
+		<div class="row">
 			<div class="col-md-4">
 				<p>Posts</p>
 			</div>
@@ -16,7 +16,7 @@
 			</div>
 		</div>
 
-		<div class="row text-center">
+		<div class="row">
 			<div class="col-md-4">
 				<p>{{ currentUser.posts }}</p>
 			</div>
@@ -29,43 +29,44 @@
 		</div>
 
 		<br><br>
-		<img class="img-responsive channel-sideimg" src="../assets/img/channel-side.png" />
+		<img class="img-responsive channel-sideimg" ng-src="assets/img/channel-side.png" />
 	</div>
 
 	<div class="col-md-1"></div>
 
-	<div class="col-md-8">
+	<div class="col-md-8 channel-right">
 		<div>
-			<div class="channel-newmw">
+			<div class="channel-mw">
 				<input class="form-control" type="text" placeholder="Anything you want to share with others?" ng-model="newMw">
 				<br>
 				<button class="btn btn-outline-info" type="button" ng-click="postMw()">Send</button>
 			</div>
-			<h5 ng-repeat="smw in mw" class='channel-newmw'>
+			<div ng-repeat="smw in mw" class='channel-mw'>
 				<div class="row">
-					<h5 class="col-md-11 channel-mw-content">
+					<h5 class="col-md-11">
 						<span><bs-glyphicon icon="envelope"></bs-glyphicon></span>
 						&nbsp;{{ smw.text }}
 						<br><br>
 					</h5>
 					<div class="col-md-1 text-right">
-						<a class="btn" href ng-click="deleteMw(smw)" ng-show="currentUser.username == smw.username"><span><bs-glyphicon icon="remove" class="link-blue"></bs-glyphicon></span></a>
+						<a class="btn btn-remove" href ng-click="deleteMw(smw)" ng-show="currentUser.username == smw.username"><span><bs-glyphicon icon="remove"></bs-glyphicon></span></a>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-1 channel-like">
-						<a class="btn channel-like-content" href ng-click="likeMw(smw)" ng-class="{disabled: inArray(smw)}"><span><bs-glyphicon icon="thumbs-up"></bs-glyphicon><small>&nbsp;&nbsp;likes: {{ smw.likes }}</small></span></a>
+						<a class="btn" href ng-click="likeMw(smw)" ng-class="{disabled: inArray(smw)}"><span><bs-glyphicon icon="thumbs-up"></bs-glyphicon><small>&nbsp;&nbsp;likes: {{ smw.likes }}</small></span></a>
 					</div>
 					<div class="col-md-1 channel-dislike">
-						<a class="btn channel-dislike-content" href ng-click="dislikeMw(smw)" ng-class="{disabled: inArray(smw)}"><span><bs-glyphicon icon="thumbs-down"></bs-glyphicon><small>&nbsp;&nbsp;dislikes: {{ smw.dislikes }}</small></span></a>
+						<a class="btn" href ng-click="dislikeMw(smw)" ng-class="{disabled: inArray(smw)}"><span><bs-glyphicon icon="thumbs-down"></bs-glyphicon><small>&nbsp;&nbsp;dislikes: {{ smw.dislikes }}</small></span></a>
 					</div>
-					<div class="col-md-1 channel-comment">
-						<a class="btn channel-comment-content" href ng-click="commentMw(smw)"><span><bs-glyphicon icon="comment"></bs-glyphicon><small>&nbsp;&nbsp;comments: {{ smw.comments }}</small></span></a>
+					<div class="col-md-3 channel-comment">
+						<a class="btn" href ng-click="commentMw(smw)"><span><bs-glyphicon icon="comment"></bs-glyphicon><small>&nbsp;&nbsp;comments: {{ smw.comments }}</small></span></a>
 					</div>
-					<div class="col-md-8 text-right">
+					<div class="col-md-6 text-right">
 						<small>By {{ smw.username }}</small>
 						<small>{{ smw.date }} {{ smw.time }}</small>
 					</div>
+					<div class="col-md-1"></div>
 				</div>
 				<br>
 				<div class="row" ng-show="showComments == smw._id">
@@ -78,22 +79,21 @@
 					</div>
 				</div>
 				<br>
-				<div class="row" ng-repeat="reply in smw.replies">
+				<div class="row channel-comment-content" ng-repeat="reply in smw.replies">
 					<div class="col-md-2"></div>
 					<div class="col-md-9 channel-comment-bg">
-						<p class="channel-comment-body"><a style="color: #2e4da7">{{ reply.replyTitle }} :</a> {{ reply.replyBody }}</p>
+						<p><span>{{ reply.replyTitle }} :</span> {{ reply.replyBody }}</p>
 					</div>
 					<div class="col-md-1 channel-comment-bg text-right">
-                                                <a class="btn" href ng-click="deleteComment(smw, reply)" ng-show="currentUser.username == reply.replyTitle"><span><bs-glyphicon icon="remove-circle" class="link-blue"></bs-glyphicon></span></a>
+                                                <a class="btn" href ng-click="deleteComment(smw, reply)" ng-show="currentUser.username == reply.replyTitle"><span><bs-glyphicon icon="remove-circle"></bs-glyphicon></span></a>
                                         </div>
 					<br>
 				</div>
 						
-			</h5>
+			</div>
 		</div>
 	</div>
 		
 </div>
 
-<br><br>
-<hr class='hr-short'>
+<footer><hr></footer>
