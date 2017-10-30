@@ -2,6 +2,11 @@
 
 The Most-Wanted Community is a MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS) Single-Page Application, designed and developed for Need-For-Speed Most-Wanted fans to share experiences and download addons. 
 
+## Current Version
+```Version 1```
+
+## Change Log
+- **version 1 :** signup/login, post/delete/like/dislike/comment on moment, edit profile, view photo gallery, download file, etc. (see more details in *FEATURES*;
 
 ## Prerequisites
 
@@ -21,7 +26,7 @@ Database: MongoDB
 5. Open the browser with: ```http://localhost:8000```
 
 
-## Features:
+## Features
 
 * Most of the functionalities are only accessible to the registered user;
 
