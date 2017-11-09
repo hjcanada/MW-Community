@@ -9,6 +9,7 @@
     "angular-route": "1.6.4",
     "bootstrap": "4.0.0-beta",
     "angular-cookies": "1.6.4",
-    "bs-glyphicon": "bootstrap-glyphicon#^1.0.8"
+    "bs-glyphicon": "bootstrap-glyphicon#^1.0.8",
+    "angular-messages": "1.6.4"
   }
 }

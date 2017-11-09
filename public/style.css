@@ -27,11 +27,11 @@ footer hr {
 	margin: 0 auto;
 }
 
-footer .login-footer {
-	padding-top: 50px;
+.lg-footer {
+	padding-top: 80px;
 }
 
-footer .signup-footer {
+.sg-footer {
 	padding-top: 30px;
 }
 
@@ -59,19 +59,67 @@ footer .signup-footer {
 	margin: 0 auto;
 }
 
+.about h3 {
+	margin: 30px 0 20px 0;
+}
+
+.about ul {
+	margin: 0;
+	padding: 0;
+}
+
+.about li {
+	margin: 0 40px 0 0;
+	display: inline-block;
+	height: 64px;
+	list-style: none;
+}
+
+.about a {
+	width: 64px;
+	height: 64px;
+	display: inline-block;
+}
+
+.about .jumbotron p {
+	text-align: justify;
+}
+
 .about .about-detail {
 	margin: 0 auto;
 }
 
-.about .about-detail h3 {
-	margin: 30px 0 20px 0;
+.about #facebook {
+	width: 64px;
+	background: url('assets/img/about-icon.png') 0 0;
 }
 
-.about .about-detail a img{
-	width: 80%;
+.about #twitter {
+	width: 64px;
+	background: url('assets/img/about-icon.png') -64px 0;
 }
 
-.about button {
+.about #instagram {
+	width: 64px;
+	background: url('assets/img/about-icon.png') -128px 0;
+}
+
+.about fieldset legend {
+	margin-bottom: 20px;
+}
+
+.about fieldset label {
+	margin-bottom: 1px;
+}
+
+.about fieldset .alert{
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: -10px;
+}
+
+.about fieldset .submit {
+	display: block;
 	width: 70%;
 	margin: 0 auto;
 	-webkit-transition: .5s ease-in;
@@ -85,20 +133,21 @@ footer .signup-footer {
 	margin-top: 80px;
 }
 
-.login .login-icon img {
+.login .lg-title {
 	width: 35%;
 	margin: 0 0 -10px -20px;
 }
 
-.login .login-form p {
+.login form label {
 	margin-bottom: 1px;
 }
 
-.login .login-form a {
+.login form a {
 	color: #428bca;
 }
 
-.login .login-form .btn {
+.login form .btn {
+	margin: 30px 0 20px 0;
 	width: 30%;
 	-webkit-transition: .5s ease-in;
 	-moz-transition: .5s ease-in;
@@ -107,20 +156,39 @@ footer .signup-footer {
 	transition: .5s ease-in;
 }
 
-.login .login-image img {
+.login form .alert {
+	margin: 10px 0 10px 0;
+}
+
+.login .lg-background {
 	width: 100%;
 }
 
-.signup .signup-icon img {
+.signup h2 {
+	margin-bottom: 1em;
+}
+
+.signup .sg-title{
 	width: 50%;
 	margin: 60px 0 20px 0;
 }
 
-.signup .signup-form a {
+.signup form {
+	display: block;
+	width: 33%;
+	margin: 0 auto;
+}
+
+.signup form a {
 	color: #428bca;
 }
 
-.signup .signup-form .btn {
+.signup form .alert {
+	margin: 10px 0 10px 0;
+}
+
+.signup form .btn {
+	margin-bottom: 10px;
         -webkit-transition: .5s ease-in;
         -moz-transition: .5s ease-in;
         -ms-transition: .5s ease-in;
@@ -172,6 +240,10 @@ footer .signup-footer {
 
 .profile .profile-form-right form{
 	margin: 0 auto;
+}
+
+.profile .profile-form-right td {
+	height: 55px;
 }
 
 .profile .profile-form-right select, .profile .profile-form-right input {

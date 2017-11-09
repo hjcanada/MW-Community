@@ -10,45 +10,62 @@
 		<div class='col-md-6 text-left'>
 			<h3><strong>Contact Us</strong></h3>
 			<p>Want to get in touch?</p>
-			<p>Send us email at&nbsp; <i><strong>administrator@mwcommunity.ca</strong></i></p>
-			<br><br>
-			<div class='row'>
-				<div class='col-md-2'>
-					<a href='https://www.facebook.com/leagueautocity/'><img ng-src='assets/img/facebook-logo.png'/></a>
-				</div>
-				<div class='col-md-2'>
-					<a href='https://twitter.com'><img ng-src='assets/img/twitter-logo.png'/></a>
-				</div>
-				<div class='col-md-2'>
-					<a href='https//www.instagram.com'><img ng-src='assets/img/instagram-logo.png'/></a>
-				</div>
-			</div>
+			<p>Send us email at&nbsp; <em><strong>administrator@mwcommunity.ca</strong></em></p>
+			<br>
+			<ul>
+				<li id='facebook'><a href='https://www.facebook.com/leagueautocity/' target='_blank'></a></li>
+				<li id='twitter'><a href='https://twitter.com' target='_blank'></a></li>
+				<li id='instagram'><a href='https//www.instagram.com' target='_blank'></a></li>
+			</ul>
 		</div>
 
-		<div class='col-md-6'>
-			<h3 class='text-center'><strong>Help Us Improve</strong></h3>
-			<form class='row text-left'>
+		<fieldset class='col-md-6'>
+			<legend class='text-center'><strong>Help Us Improve</strong></legend>
+			<form class='form-group row text-left' name='opForm' ng-submit='submit()' novalidate>
 				<div class='col-md-6'>
-					<p>Username/Nickname</p>
-					<input class='form-control input-lg' type='text' ng-model='name' required='required'>
+					<label for='name'>Username/Nickname</label>
+					<input class='form-control input-lg' name='name' id='name' type='text' minlength='3' maxlength='18' pattern='[A-Za-z0-9]{3,18}' ng-model='opinion.name' required>
+					<div class='alert alert-warning' ng-messages='opForm.name.$error' ng-show='opForm.$submitted && opForm.name.$invalid' role='alert'>
+						<div ng-message='required'>Username Cannot Be Empty!</div>
+						<div ng-message='minlength'>Username Too Short!</div>
+						<div ng-message='pattern'>Letters and Numbers Only!</div>
+					</div>
 				</div>
 				<div class='col-md-6'>
-					<p>E-mail</p>
-					<input class='form-control input-lg' type='text' ng-model='email' required='required'>
+					<label for='email'>E-mail</label>
+					<input class='form-control input-lg' name='email' id='email' type='email' pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$' ng-model='opinion.email' required>
+					<div class='alert alert-warning' ng-messages='opForm.email.$error' ng-show='opForm.$submitted && opForm.email.$invalid' role='alert'>
+						<div ng-message='required'>Email Cannot Be Empty!</div>
+						<div ng-message='pattern'>Invalid Email Format!</div>
+					</div>
 				</div>
 
 				<div class='col-md-12'>
 					<br>
-					<p>Your Suggestions/Opinions</p>
-					<textarea type='text' class='form-control' col='10' row='6' placeholder='write your opnions here' ng-model='message' required='required'></textarea>
+					<label for='message'>Your Suggestions/Opinions</label>
+					<textarea class='form-control' name='message' id='message' type='text' maxlength='1000' cols='10' rows='4' placeholder='Write your opnions here...' ng-model='opinion.message' required></textarea>
+
+					<div class='alert alert-warning' ng-messages='opForm.message.$error' ng-show='opForm.$submitted && opForm.message.$invalid' role='alert'>
+						<div ng-message='required'>Your Opinions/Suggestions Cannot Be Empty!</div>
+					</div>
+
+					<div class='alert alert-success' ng-show='showSuccess'>
+						<button type="button" class="close" ng-click="switchBool('showSuccess')">x</button>
+						Thanks for your suggestion!
+					</div>
+
+					<div class='alert alert-danger' ng-show='showError'>
+						<button type="button" class="close" ng-click="switchBool('showError')">x</button>
+						Unexpected Error Occurs During The Submittion!
+					</div>
 					<br><br>
 				</div>
 
 				<div class='col-md-12'>
-					<button class='btn btn-outline-info btn-block' ng-click='opiSubmit()'>Submit</button>
+					<input type='submit' class='btn btn-outline-info submit'>
 				</div>
 			</form>
-		</div>
+		</fieldset>
 	</div>
 </div>
 

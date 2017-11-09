@@ -1,49 +1,48 @@
 <div class="row login">
 
-	<div class="col-md-12 login-icon">
-		<img ng-src="assets/img/mw-login-title.png"/>
+	<div class="col-md-12">
+		<img class="img-responsive lg-title" ng-src="assets/img/mw-login-title.png"/>
 	</div>
 
-	<div class="col-md-4 login-form">
-		<div>
-			<hr><br>
+	<div class="col-md-4">
+		<hr><br>
 
-			<form>
-			<p>Username</p>
-			<input class="form-control" type="text" placeholder="username" ng-model="username" required="required">
+		<form name="lgForm" ng-submit="login()" ng-controller="loginCtrl" novalidate>
+			<label for="username">Username</label>
+			<input name="username" id="username" class="form-control" type="text" placeholder="username" ng-model="user.username" required>
+			<div class="alert alert-warning" ng-messages="lgForm.username.$error" ng-show="lgForm.$submitted && lgForm.username.$invalid">
+				<div ng-message="required">Username Cannot Be Empty!</div>
+			</div>
 			<br>
-			<p>Password</p>
-                        <input class="form-control" type="password" placeholder="password" ng-model="password" required="required">
-			<br><br>
 
-			<div ng-controller="loginCtrl">
-				<div class="alert alert-danger" ng-show="showFailAlert">
-					<button type="button" class="close" data-ng-click="switchBool('showFailAlert')">x</button>
-					<strong>Error:</strong> {{ failTextAlert }}
-				</div>
+			<label for="password">Password</label>
+			<input name="password" id="password" class="form-control" type="password" placeholder="password" ng-model="user.password" required>
+			<div class="alert alert-warning" ng-messages="lgForm.password.$error" ng-show="lgForm.$submitted && lgForm.password.$invalid">
+				<div ng-message="required">Password Cannot Be Empty!</div>
 			</div>
 
-			<button type="button" class="btn btn-outline-info btn-block" ng-click="login()">Log In</button>
+			<div class="alert alert-danger" ng-show="showFail">
+				<button type="button" class="close" ng-click="switchBool('showFail')">x</button>
+				<strong>Error:</strong> Invalid username or password!
+			</div>
 
-			<br>
+			<input type="submit" class="btn btn-outline-info btn-block" value='Log In'>
 	
-			<a href="#/signup">Not a member? Sign Up!</a>
-			</form>
-		</div>
+		</form>
+
+		<a href="#/signup">Not a member? Sign Up!</a>
 	</div>
 
-	<div class="col-md-8 login-image">
-			<img class="img-responsive" src="../assets/img/mw-login.png" />
+	<div class="col-md-8">
+			<img class="img-responsive lg-background" ng-src="assets/img/mw-login.png" />
 
 	</div>
 		
 </div>
 
-<footer>
-	<div class="login-footer">
-		<hr>
-		<p>Developed by Jun Hu<p>
-		<p>Email: junhu.acl@gmail.com</p>
-	</div>
+<footer class="lg-footer">
+	<hr>
+	<p>Developed by Jun Hu<p>
+	<p>Email: junhu.acl@gmail.com</p>
 </footer>
 

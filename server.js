@@ -384,6 +384,7 @@ app.put('/user/login', function(req, res, next) {
 						userCollection.update({username: req.body.username}, {$set: {lastDate: lastDate, lastTime: lastTime}});
 						res.json({
 							token: token,
+							username: user.username,
 							posts: user.posts,
 							comments: user.comments,
 							points: user.points,
@@ -391,7 +392,7 @@ app.put('/user/login', function(req, res, next) {
 							joinDate: user.joinDate,
 							joinTime: user.joinTime,
 							lastDate: lastDate,
-							lastTime: lastTime
+							lastTime: lastTime,
 						});
 					} else {
 						res.status(400).send();
@@ -541,8 +542,11 @@ app.post('/opinion', function(req, res, next) {
 			var opinion = {
 				name: req.body.name,
 				email: req.body.email,
-				message: req.body.message
+				message: req.body.message,
+				createDate: timeDate.toLocaleDateString(),
+				createTime: timeDate.toLocaleTimeString(),
 			};
+			console.log(opinion);
 			opiCollection.insert(opinion, {w:1}, function(err) {
 				if (err) {
 					res.send(err);

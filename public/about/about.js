@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mwCommunity.about', ['ngRoute'])
+angular.module('mwCommunity.about', ['ngRoute', 'ngMessages'])
 
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider
@@ -10,28 +10,27 @@ angular.module('mwCommunity.about', ['ngRoute'])
 	})
 }])
 
-.controller('aboutCtrl', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+.controller('aboutCtrl', ['$scope', '$http', function($scope, $http) {
+
+	$scope.switchBool = function(value) {
+		$scope[value] = !$scope[value];
+	}
 	
-	$scope.opiSubmit = function() {
-		if ($scope.name == null || $scope.email == null || $scope.message == null) {
-			alert('Not enough information')
-		} else {
-			var opinion = {
-				name: $scope.name,
-				email: $scope.email,
-				message: $scope.message
-			}
-
-			$http.post('/opinion', opinion).then(function(res) {
-				alert('Thanks for your suggestion!')
+	$scope.submit = function() {
+		if ($scope.opForm.$valid) {
+			$http.post('/opinion', $scope.opinion).then(function(res) {
+				$scope.showSuccess = true;
 			}, function(err) {
-				alert('Submit Error!')
+				$scope.showError = true;
 			})
-		}
 
-		$scope.name = ''
-		$scope.email = ''
-		$scope.message = ''
+			$scope.opinion = null;
+			$scope.opForm.$setPristine();
+			$scope.opForm.$setUntouched();
+		} else {
+			$scope.showSuccess = false;
+			$scope.showError = false;
+		}
 	}
 	
 }])
