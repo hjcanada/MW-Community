@@ -108,6 +108,10 @@ angular.module('mwCommunity.channel', ['ngRoute', 'ngCookies'])
         };
 
 	$scope.inArray = function(mw) {
+		if (!$rootScope.currentUser) {
+			return false;
+		}
+
 		if (mw.likeUsers.indexOf($rootScope.currentUser.username) == -1 
 			&& mw.dislikeUsers.indexOf($rootScope.currentUser.username) == -1) {
 			return false;

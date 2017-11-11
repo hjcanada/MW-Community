@@ -8,7 +8,7 @@
 		<h2>Join us today!</h2>
 		
 		<form name="sgForm" ng-submit="signup()" novalidate>
-			<input name="username" class="form-control input-lg" type="text" minlength="3" pattern="[A-Za-z0-9]{3,}" placeholder="Enter your username" ng-model="user.username" required>
+			<input name="username" class="form-control input-lg" type="text" minlength="3" pattern="[A-Za-z0-9 ]{3,}" placeholder="Enter your username" ng-model="user.username" required>
 			<div class="alert alert-warning" ng-messages="sgForm.username.$error" ng-show="sgForm.$submitted && sgForm.username.$invalid">
 				<div ng-message="required">Username Cannot Be Empty!</div>
 				<div ng-message="minlength">Username Too Short!</div>

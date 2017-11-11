@@ -7,10 +7,10 @@ var bodyParser = require('body-parser');
 
 var db = null;
 var currentUser = null;
-var port = 8000;
+var port = 35232;
 var SALT_WORK_FACTOR = 10;
 var JWT_SECRET = 'mostwanted';
-var dbUrl = 'mongodb://localhost:27017/mw';
+var dbUrl = 'mongodb://localhost:27017/mwshow';
 
 var app = express();
 
@@ -543,10 +543,7 @@ app.post('/opinion', function(req, res, next) {
 				name: req.body.name,
 				email: req.body.email,
 				message: req.body.message,
-				createDate: timeDate.toLocaleDateString(),
-				createTime: timeDate.toLocaleTimeString(),
 			};
-			console.log(opinion);
 			opiCollection.insert(opinion, {w:1}, function(err) {
 				if (err) {
 					res.send(err);
