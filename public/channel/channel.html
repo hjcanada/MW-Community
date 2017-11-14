@@ -14,9 +14,6 @@
 			<div class="col-md-4">
 				<p>Points</p>
 			</div>
-		</div>
-
-		<div class="row">
 			<div class="col-md-4">
 				<p>{{ currentUser.posts }}</p>
 			</div>
@@ -52,21 +49,16 @@
 						<a class="btn btn-remove" href ng-click="deleteMw(smw)" ng-show="currentUser.username == smw.username"><span><bs-glyphicon icon="remove"></bs-glyphicon></span></a>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-1 channel-like">
-						<a class="btn" href ng-click="likeMw(smw)" ng-class="{disabled: inArray(smw)}"><span><bs-glyphicon icon="thumbs-up"></bs-glyphicon><small>&nbsp;&nbsp;likes: {{ smw.likes }}</small></span></a>
+				<div class="row channel-icon">
+					<div class="col-md-7">
+						<a class="btn btn-like" href="javascript:void(0)" ng-click="likeMw(smw)" ng-class="{disabled: inLike(smw)}"><span><bs-glyphicon icon="thumbs-up"></bs-glyphicon><small>&nbsp;&nbsp;likes: {{ smw.likes }}</small></span></a>
+						<a class="btn btn-dislike" href="javascript:void(0)" ng-click="dislikeMw(smw)" ng-class="{disabled: inDislike(smw)}"><span><bs-glyphicon icon="thumbs-down"></bs-glyphicon><small>&nbsp;&nbsp;dislikes: {{ smw.dislikes }}</small></span></a>
+						<a class="btn btn-comment" href="javascript:void(0)" ng-click="commentMw(smw)"><span><bs-glyphicon icon="comment"></bs-glyphicon><small>&nbsp;&nbsp;comments: {{ smw.comments }}</small></span></a>
 					</div>
-					<div class="col-md-1 channel-dislike">
-						<a class="btn" href ng-click="dislikeMw(smw)" ng-class="{disabled: inArray(smw)}"><span><bs-glyphicon icon="thumbs-down"></bs-glyphicon><small>&nbsp;&nbsp;dislikes: {{ smw.dislikes }}</small></span></a>
-					</div>
-					<div class="col-md-3 channel-comment">
-						<a class="btn" href ng-click="commentMw(smw)"><span><bs-glyphicon icon="comment"></bs-glyphicon><small>&nbsp;&nbsp;comments: {{ smw.comments }}</small></span></a>
-					</div>
-					<div class="col-md-6 text-right">
+					<div class="col-md-5 text-right">
 						<small>By {{ smw.username }}</small>
 						<small>{{ smw.date }} {{ smw.time }}</small>
 					</div>
-					<div class="col-md-1"></div>
 				</div>
 				<br>
 				<div class="row" ng-show="showComments == smw._id">

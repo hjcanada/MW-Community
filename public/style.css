@@ -267,6 +267,11 @@ footer hr {
 	margin-top: 40px;
 }
 
+.channel .channel-left .col-md-4 {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
 .channel .channel-avatar {
 	width: 70px;
 	height: 70px;
@@ -289,27 +294,23 @@ footer hr {
 	color: #428ba7;
 }
 
-.channel .channel-like {
-	margin: -10px 10px 0 -10px;
+.channel .channel-icon {
+	padding: 0;
 }
 
-.channel .channel-like a {
-	color: #bc243c;
+.channel .channel-icon a {
+	padding: 0 5px 0 0;
 }
 
-.channel .channel-dislike {
-	margin: -10px 0 0 10px;
+.channel .btn-like {
+        color: #bc243c;
 }
 
-.channel .channel-dislike a {
+.channel .btn-dislike {
 	color: #2e4da7;
 }
 
-.channel .channel-comment {
-	margin: -10px 0 0 40px;
-}
-
-.channel .channel-comment a {
+.channel .btn-comment {
 	color: #424242;
 }
 
@@ -381,6 +382,7 @@ footer hr {
 	margin: 6px;
 	border: 4px solid #eee;
 	box-shadow: #555 1px 1px 8px 1px;
+	cursor: pointer;
 }
 
 .download-detail .download-detail-btn {

@@ -7,10 +7,10 @@ var bodyParser = require('body-parser');
 
 var db = null;
 var currentUser = null;
-var port = 35232;
+var port = 8000;
 var SALT_WORK_FACTOR = 10;
 var JWT_SECRET = 'mostwanted';
-var dbUrl = 'mongodb://localhost:27017/mwshow';
+var dbUrl = 'mongodb://localhost:27017/mw';
 
 var app = express();
 
@@ -85,10 +85,10 @@ app.post('/mw', function(req, res, next) {
 			userCollection.findOne({username: user.username}, function(err, ans) {
 				if (err) {
 					res.send(err);
-				} else if (user == null ) {
+				} else if (ans == null ) {
 					res.status(400).send();
 				} else {
-					userCollection.update({username: user.username}, {$set: {posts: (ans.posts + 1), points: (ans.points + 4)}});
+					userCollection.update({username: ans.username}, {$set: {posts: (ans.posts + 1), points: (ans.points + 4)}});
 					res.send();
 				}
 			});
@@ -101,9 +101,12 @@ app.put('/mw/like', function(req, res, next) {
 
 	var mwId = req.body.mw._id;
 	var mwLikes = req.body.mw.likes;
+	var mwDislikes = req.body.mw.dislikes;
 
         var token = req.headers.authorization;
         var user = jwt.decode(token, JWT_SECRET);
+
+	var inArray = false;
 
 	db.collection('mw', function(err, mwCollection) {
 		if (err) {
@@ -111,36 +114,50 @@ app.put('/mw/like', function(req, res, next) {
 		} else {
 			mwCollection.update({_id: ObjectId(mwId)}, {$set: {likes: (mwLikes + 1)}});
 			mwCollection.update({_id: ObjectId(mwId)}, {$push: {likeUsers: user.username}});
-			res.send();
+			mwCollection.findOne({_id: ObjectId(mwId)}, function(err, ans) {
+				if (err) {
+					res.send(err);
+				} else if (ans == null ) {
+					res.status(400).send();
+				} else if (ans.dislikeUsers.indexOf(user.username) != -1){
+					mwCollection.update({_id: ObjectId(mwId)}, {$pull: {dislikeUsers: user.username}});
+					mwCollection.update({_id: ObjectId(mwId)}, {$set: {dislikes: (mwDislikes - 1)}});
+					res.send();
+				} else {
+					db.collection('user', function(err, userCollection) {
+						if (err) {
+							res.send(err);
+						} else {
+							userCollection.findOne({username: user.username}, function(err, ans) {
+								if (err) {
+									res.send(err);
+								} else if (ans == null ) {
+									res.status(400).send();
+								} else {
+									userCollection.update({username: ans.username}, {$set: {points: (ans.points + 1)}});
+									res.send();
+								}
+							});
+						}
+					});
+				}
+			})
 		}
 	});
 
-	db.collection('user', function(err, userCollection) {
-		if (err) {
-			res.send(err);
-		} else {
-			userCollection.findOne({username: user.username}, function(err, ans) {
-				if (err) {
-					res.send(err);
-				} else if (user == null ) {
-					res.status(400).send();
-				} else {
-					userCollection.update({username: user.username}, {$set: {points: (ans.points + 1)}});
-					res.send();
-				}
-			});
-		}
-	});
 });
 
 // Update moment info in db (dislike moment)
 app.put('/mw/dislike', function(req, res, next) {
 
 	var mwId = req.body.mw._id;
+	var mwLikes = req.body.mw.likes;
 	var mwDislikes = req.body.mw.dislikes;
 
         var token = req.headers.authorization;
         var user = jwt.decode(token, JWT_SECRET);
+
+	var inArray = false;
 
 	db.collection('mw', function(err, mwCollection) {
 		if (err) {
@@ -148,26 +165,37 @@ app.put('/mw/dislike', function(req, res, next) {
 		} else {
 			mwCollection.update({_id: ObjectId(mwId)}, {$set: {dislikes: (mwDislikes + 1)}});
 			mwCollection.update({_id: ObjectId(mwId)}, {$push: {dislikeUsers: user.username}});
-			res.send()
+			mwCollection.findOne({_id: ObjectId(mwId)}, function(err, ans) {
+				if (err) {
+					res.send(err);
+				} else if (ans == null ) {
+					res.status(400).send();
+				} else if (ans.likeUsers.indexOf(user.username) != -1) {
+					mwCollection.update({_id: ObjectId(mwId)}, {$pull: {likeUsers: user.username}});
+					mwCollection.update({_id: ObjectId(mwId)}, {$set: {likes: (mwLikes - 1)}});
+					res.send();
+				} else {
+					db.collection('user', function(err, userCollection) {
+						if (err) {
+							res.send(err);
+						} else {
+							userCollection.findOne({username: user.username}, function(err, ans) {
+								if (err) {
+									res.send(err);
+								} else if (ans == null ) {
+									res.status(400).send();
+								} else {
+									userCollection.update({username: ans.username}, {$set: {points: (ans.points + 1)}});
+									res.send();
+								}
+							});
+						}
+					});
+				}
+			})
 		}
 	});
 
-	db.collection('user', function(err, userCollection) {
-		if (err) {
-			res.send(err);
-		} else {
-			userCollection.findOne({username: user.username}, function(err, ans) {
-				if (err) {
-					res.send(err);
-				} else if (user == null ) {
-					res.status(400).send();
-				} else {
-					userCollection.update({username: user.username}, {$set: {points: (ans.points + 1)}});
-					res.send();
-				}
-			});
-		}
-	});
 });
 
 //Update moment info in db (comment moment)
@@ -203,10 +231,10 @@ app.put('/reply', function(req, res, next) {
 			userCollection.findOne({username: user.username}, function(err, ans) {
 				if (err) {
 					res.send(err);
-				} else if (user == null ) {
+				} else if (ans == null ) {
 					res.status(400).send();
 				} else {
-					userCollection.update({username: user.username}, {$set: {comments: (ans.comments + 1), points: (ans.points + 2)}});
+					userCollection.update({username: ans.username}, {$set: {comments: (ans.comments + 1), points: (ans.points + 2)}});
 					res.send();
 				}
 			});
@@ -241,10 +269,10 @@ app.put('/reply/delete', function(req, res, next) {
 			userCollection.findOne({username: user.username}, function(err, ans) {
 				if (err) {
 					res.send(err);
-				} else if (user == null ) {
+				} else if (ans == null ) {
 					res.status(400).send();
 				} else {
-					userCollection.update({username: user.username}, {$set: {comments: (ans.comments - 1), points: (ans.points - 2)}});
+					userCollection.update({username: ans.username}, {$set: {comments: (ans.comments - 1), points: (ans.points - 2)}});
 					res.send();
 				}
 			});
@@ -259,10 +287,116 @@ app.put('/mw/delete', function(req, res, next) {
 	var token = req.headers.authorization;
 	var user = jwt.decode(token, JWT_SECRET);
 
+	function findIndex(users, name) {
+		for (var i = 0; i < users.length; i++) {
+			if (users[i].name == name) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
 	db.collection('mw', function(err, mwCollection) {
 		if (err) {
 			res.send(err);
 		} else {
+			mwCollection.findOne({_id: ObjectId(mwId), user: user._id}, function(err, ans) {
+				if (err) {
+					res.send(err);
+				} else {
+					var users = [];
+					for (var i = 0; i < ans.likeUsers.length; i++) {
+						var tmpUser = ans.likeUsers[i];
+						var index = findIndex(users, tmpUser);
+						if (index == -1) {
+							users.push({
+								name: tmpUser, 
+								likes: 1,
+								dislikes: 0,
+								comments: 0,
+								posts: 0
+							});
+						} else {
+							users[index].likes++;
+						}
+					}
+					 
+
+					for (var i = 0; i < ans.dislikeUsers.length; i++) {
+						var tmpUser = ans.dislikeUsers[i];
+						var index = findIndex(users, tmpUser);
+						if (index == -1) {
+							users.push({
+								name: tmpUser, 
+								likes: 0,
+								dislikes: 1,
+								comments: 0,
+								posts: 0
+							});
+						} else {
+							(users[index]).dislikes++;
+						}
+					}
+
+					for (var i = 0; i < ans.replies.length; i++) {
+						var tmpUser = ans.replies[i].replyTitle;
+						var index = findIndex(users, tmpUser);
+						if (index == -1) {
+							users.push({
+								name: tmpUser, 
+								likes: 0,
+								dislikes: 0,
+								comments: 1,
+								posts: 0
+							});
+						} else {
+							users[index].comments++;
+						}
+					}
+					
+					var index = findIndex(users, user.username);
+					if (index == -1) {
+						users.push({
+							name: ans.username,
+							likes: 0,
+							dislikes: 0,
+							comments: 0,
+							posts: 1,
+						});
+					} else {
+						users[index].posts++;
+					}	
+
+					db.collection('user', function(err, userCollection) {
+						if (err) {
+							res.send(err);
+						} else {
+							for (var i = 0; i < users.length; i++) {
+								(function(i){
+								userCollection.findOne({username: users[i].name}, function(err, ans) {
+									if (err) {
+										res.send(err);
+									} else if (ans == null) {
+										res.status(400).send();
+									} else {
+										userCollection.update({username: users[i].name}, 
+											{$set: {posts: (ans.posts - users[i].posts),
+												comments: (ans.comments - users[i].comments), 
+												points: (ans.points - users[i].posts*4 - users[i].comments*2 
+													- users[i].likes - users[i].dislikes)}
+											}
+										);
+									}
+
+								});
+								})(i);
+							}
+							res.send();
+						}
+					});
+				}
+			});
+
 			mwCollection.remove({_id: ObjectId(mwId), user: user._id}, {w:1}, function(err) {
 				if (err) {
 					res.send(err);
@@ -273,22 +407,6 @@ app.put('/mw/delete', function(req, res, next) {
 		}
 	});
 
-	db.collection('user', function(err, userCollection) {
-		if (err) {
-			res.send(err);
-		} else {
-			userCollection.findOne({username: user.username}, function(err, ans) {
-				if (err) {
-					res.send(err);
-				} else if (user == null ) {
-					res.status(400).send();
-				} else {
-					userCollection.update({username: user.username}, {$set: {posts: (ans.posts - 1), points: (ans.points - 4)}});
-					res.send();
-				}
-			});
-		}
-	});
 });
 
 // Get data (user info) from db
@@ -297,13 +415,13 @@ app.get('/user', function(req, res, next) {
 		if (err) {
 			res.send(err);
 		} else {
-			userCollection.findOne({username: currentUser}, function(err, user) {
+			userCollection.findOne({username: currentUser}, function(err, ans) {
 				if (err) {
 					res.send(err);
-				} else if (user == null) {
+				} else if (ans == null) {
 					res.status(400).send();
 				} else {
-					res.json(user);
+					res.json(ans);
 				}
 			});
 		}
@@ -418,17 +536,17 @@ app.put('/user/gender', function(req, res, next) {
 		if (err) {
 			res.send(err);
 		} else {
-			userCollection.findOne({username: user.username}, function(err, user) {
+			userCollection.findOne({username: user.username}, function(err, ans) {
 				if (err) {
 					res.send(err);
-				} else if (user == null) {
+				} else if (ans == null) {
 					res.status(400).send();
 				} else {
 					// rules: add = 0, delete = 1
 					if (operator == 0) {
-						userCollection.update({username: user.username}, {$set: {gender: gender}});
+						userCollection.update({username: ans.username}, {$set: {gender: gender}});
 					} else if (operator == 1) {
-						userCollection.update({username: user.username}, {$set: {gender: ''}});
+						userCollection.update({username: ans.username}, {$set: {gender: ''}});
 					}
 					res.send();
 				}
@@ -450,17 +568,17 @@ app.put('/user/email', function(req, res, next) {
 		if (err) {
 			res.send(err);
 		} else {
-			userCollection.findOne({username: user.username}, function(err, user) {
+			userCollection.findOne({username: user.username}, function(err, ans) {
 				if (err) {
 					res.send(err);
-				} else if (user == null) {
+				} else if (ans == null) {
 					res.status(400).send();
 				} else {
 					// rules: add = 0, delete = 1
 					if (operator == 0) {
-						userCollection.update({username: user.username}, {$set: {email: email}});
+						userCollection.update({username: ans.username}, {$set: {email: email}});
 					} else if (operator == 1) {
-						userCollection.update({username: user.username}, {$set: {email: ''}});
+						userCollection.update({username: ans.username}, {$set: {email: ''}});
 					}
 					res.send();
 				}
@@ -482,17 +600,17 @@ app.put('/user/facebook', function(req, res, next) {
 		if (err) {
 			res.send(err);
 		} else {
-			userCollection.findOne({username: user.username}, function(err, user) {
+			userCollection.findOne({username: user.username}, function(err, ans) {
 				if (err) {
 					res.send(err);
-				} else if (user == null) {
+				} else if (ans == null) {
 					res.status(400).send();
 				} else {
 					// rules: add = 0, delete = 1
 					if (operator == 0) {
-						userCollection.update({username: user.username}, {$set: {facebook: facebook}});
+						userCollection.update({username: ans.username}, {$set: {facebook: facebook}});
 					} else if (operator == 1) {
-						userCollection.update({username: user.username}, {$set: {facebook: ''}});
+						userCollection.update({username: ans.username}, {$set: {facebook: ''}});
 					}
 					res.send();
 				}
@@ -514,7 +632,7 @@ app.put('/user/twitter', function(req, res, next) {
 		if (err) {
 			res.send(err);
 		} else {
-			userCollection.findOne({username: user.username}, function(err, user) {
+			userCollection.findOne({username: user.username}, function(err, ans) {
 				if (err) {
 					res.send(err);
 				} else if (user == null) {
@@ -522,9 +640,9 @@ app.put('/user/twitter', function(req, res, next) {
 				} else {
 					// rules: add = 0, delete = 1
 					if (operator == 0) {
-						userCollection.update({username: user.username}, {$set: {twitter: twitter}});
+						userCollection.update({username: ans.username}, {$set: {twitter: twitter}});
 					} else if (operator == 1) {
-						userCollection.update({username: user.username}, {$set: {twitter: ''}});
+						userCollection.update({username: ans.username}, {$set: {twitter: ''}});
 					}
 					res.send();
 				}

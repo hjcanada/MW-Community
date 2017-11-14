@@ -107,17 +107,24 @@ angular.module('mwCommunity.channel', ['ngRoute', 'ngCookies'])
                 });
         };
 
-	$scope.inArray = function(mw) {
+	$scope.inLike = function(mw) {
 		if (!$rootScope.currentUser) {
 			return false;
-		}
-
-		if (mw.likeUsers.indexOf($rootScope.currentUser.username) == -1 
-			&& mw.dislikeUsers.indexOf($rootScope.currentUser.username) == -1) {
-			return false;
-		} else {
+		} else if (mw.likeUsers.indexOf($rootScope.currentUser.username) != -1 &&
+				mw.dislikeUsers.indexOf($rootScope.currentUser.username) == -1) {
 			return true;
 		}
+		return false;
+	}
+
+	$scope.inDislike = function(mw) {
+		if (!$rootScope.currentUser) {
+			return false;
+		} else if (mw.dislikeUsers.indexOf($rootScope.currentUser.username) != -1 &&
+				mw.likeUsers.indexOf($rootScope.currentUser.username) == -1) {
+			return true;
+		}
+		return false;
 	}
 
         function getMw() {

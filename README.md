@@ -11,9 +11,9 @@ The Most-Wanted Community is a MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS
 ## Prerequisites
 
 ```
-UI: bootstrap
+UI: bootstrap 4
 Frontend: Angular.js
-Backend: Node.js
+Backend: Node.js, Express.js
 Database: MongoDB
 ```
 
@@ -31,7 +31,7 @@ Database: MongoDB
 * Most of the functionalities are only accessible to the registered user;
 
 ### Signup/Login
-* Sign up or log in with valid username and password;
+* Sign up or log in with valid username and password, and warning/error/success alerts will be shown based on different conditions;
 * Navigation bar and home page will show different views before and after logging in;
 
 ### Profile
@@ -40,12 +40,13 @@ Database: MongoDB
 
 ### Moment Managerment
 * Post/delete moments in the channel page;
-* Like/dislike anyone's moment (each user could only like/dislike a moment once);
+* Like/dislike anyone's moment (either like or dislike, and available to re-select);
 * Comment on anyone's moment (no limit);
 
-### Points Rule
-* A points rule is designed to encourage the users to be more active;
-* Each user has a 'points' attribute, which is associated with the number of moments, comments, like and dislike;
+### Points System
+* A points system is designed in backend associated with database to encourage the users to be more active;
+* Gain points by posting moments (+4), commenting (+2) and like/dislike moments (+1);
+* When a moment is deleted, all the related users will lose points, comments number and post number gained from this moment;
 
 ### Download
 * Addons (car modifications for the game) are listed in the download page;
@@ -54,9 +55,9 @@ Database: MongoDB
 * Thumbnail images in photo gallery could be zoomed in;
 
 ### About
-* Brief introduction of this application is presented through 'Jumbtron';
+* Brief introduction of this application is presented through 'Jumbotron';
 * Contact information (e.g., E-mail, social apps, etc.) are provided;
-* A customer suggestion form is designed for any user;
+* A customer suggestion form is designed for any user, and warning/error/success alerts will be shown based on different conditions;
 
 
 ## Author
