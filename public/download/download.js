@@ -9,7 +9,7 @@ angular.module('mwCommunity.download', ['ngRoute'])
 		templateUrl: 'download/download.html'
 	})
 	.when('/download/:pageID', {
-		controller: 'detailCtrl',
+		controller: 'downloadCtrl',
 		templateUrl: 'download/downloadDetail.html'
 	})
 	.otherwise({
@@ -17,18 +17,39 @@ angular.module('mwCommunity.download', ['ngRoute'])
 	})
 }])
 
-.controller('downloadCtrl', ['$scope', '$rootScope', '$http', '$location', function($scope, $rootScope, $http, $location) {
+.controller('downloadCtrl', ['$scope', '$location', '$http', '$rootScope', '$window', '$q', function($scope, $location, $http, $rootScope, $window, $q) {
+
 
 	$http.get('download/download.json').then(function(res) {
-		$rootScope.imgs = res.data;
-	});
+		$scope.imgs = res.data;
+		$http.get('download/details.json').then(function(res) {
+			$scope.imgs_thumb = res.data;
+			var path = $location.path().split("/");
+			var id = parseInt(path[path.length - 1]);
+		
+			if (angular.isNumber(id)) {
+				for (var index in $scope.imgs) {
+					if (id == $scope.imgs[index].id) {
+						$scope.img = $scope.imgs[index];
+					}
+				}
 
-}])
-
-.controller('detailCtrl', ['$scope', '$location', '$http', '$rootScope', '$window', function($scope, $location, $http, $rootScope, $window) {
-
-	$http.get('download/details.json').then(function(res) {
-		$rootScope.imgs_thumb = res.data;
+				for (index in $scope.imgs_thumb) {
+					if (id == $scope.imgs_thumb[index].id) {
+						$scope.urls = $scope.imgs_thumb[index].urls;
+						break;
+					} else {
+						$scope.urls = '';
+					}
+				}
+			} else {
+				console.log("Detected invalid page id");
+			}
+		}, function(err) {
+			console.log(err);
+		})
+	}, function(err) {
+		cosloe.log(err);
 	});
 
 	$scope.zoom = function(src) {
@@ -36,20 +57,6 @@ angular.module('mwCommunity.download', ['ngRoute'])
 	}
 
 	$scope.showDetails = function(id) {
-		for (var index in $rootScope.imgs) {
-			if (id == $rootScope.imgs[index].id) {
-				$rootScope.img = $rootScope.imgs[index];
-			}
-		}
-
-		for (index in $rootScope.imgs_thumb) {
-			if (id == $rootScope.imgs_thumb[index].id) {
-				$rootScope.urls = $rootScope.imgs_thumb[index].urls;
-				break;
-			} else {
-				$rootScope.urls = '';
-			}
-		}
 		$location.path('/download/' + id);
 	};
 

@@ -35,8 +35,11 @@
 		<div>
 			<div class="channel-mw">
 				<input class="form-control" type="text" placeholder="Anything you want to share with others?" ng-model="newMw">
-				<br>
-				<button class="btn btn-outline-info" type="button" ng-click="postMw()">Send</button>
+				<div class="alert alert-warning alert-send" role="alert" ng-show="showAlertSend">
+					<button type="button" class="close" ng-click="switchBool('showAlertSend')">x</button>
+					{{ alertSend }}
+				</div>
+				<button class="btn btn-outline-info btn-send" type="button" ng-click="postMw()">Send</button>
 			</div>
 			<div ng-repeat="smw in mw" class='channel-mw'>
 				<div class="row">

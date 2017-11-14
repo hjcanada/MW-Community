@@ -13,11 +13,19 @@ angular.module('mwCommunity.channel', ['ngRoute', 'ngCookies'])
 .controller('channelCtrl', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
 
 	$scope.showComments = null;
+	$scope.showAlertSend = false;
+
+	$scope.switchBool = function(value) {
+		$scope[value] = !$scope[value];
+	};
 
         $scope.postMw = function() {
 		if ($scope.newMw == null) {
-			alert('Please write something before posting!');
+			$scope.alertSend = "Please write something before sending!";
+			$scope.showAlertSend = true;
+			return;
 		} else {
+			$scope.showAlertSend = false;
 			$http.post('/mw',
 				{newMw: $scope.newMw},
 				{headers: {'authorization': $rootScope.token}}
@@ -71,6 +79,7 @@ angular.module('mwCommunity.channel', ['ngRoute', 'ngCookies'])
 	$scope.postComment = function(mw) {
 		if ($scope.replyBody == null) {
 			alert('please write your comments before submit!');
+			return;
 		} else {
 			var newComment = {
 					mw: mw,
