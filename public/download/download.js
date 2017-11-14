@@ -17,12 +17,39 @@ angular.module('mwCommunity.download', ['ngRoute'])
 	})
 }])
 
-.controller('downloadCtrl', ['$scope', '$location', '$http', '$rootScope', '$window', '$q', function($scope, $location, $http, $rootScope, $window, $q) {
+.service('imgService', ['$http', '$q', function($http, $q) {
 
+	this.getImgs = function() {
+		var defer = $q.defer();
+		
+		$http.get('download/download.json').then(function(res) {
+			defer.resolve(res);
+		}, function(err) {
+			defer.reject(err);
+		})
+		
+		return defer.promise;
+	};
 
-	$http.get('download/download.json').then(function(res) {
-		$scope.imgs = res.data;
+	this.getThumbs = function() {
+		var defer = $q.defer();
+
 		$http.get('download/details.json').then(function(res) {
+			defer.resolve(res);
+		}, function(err) {
+			defer.reject(err);
+		})
+
+		return defer.promise;
+	}
+}])
+
+.controller('downloadCtrl', ['$scope', '$location', '$http', '$rootScope', '$window', 'imgService', function($scope, $location, $http, $rootScope, $window, imgService) {
+
+
+	imgService.getImgs().then(function(res) {
+		$scope.imgs = res.data;
+		imgService.getThumbs().then(function(res) {
 			$scope.imgs_thumb = res.data;
 			var path = $location.path().split("/");
 			var id = parseInt(path[path.length - 1]);
