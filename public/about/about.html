@@ -24,7 +24,7 @@
 			<form class='form-group row text-left' name='opForm' ng-submit='submit()' novalidate>
 				<div class='col-md-6'>
 					<label for='name'>Username/Nickname</label>
-					<input class='form-control input-lg' name='name' id='name' type='text' minlength='3' maxlength='18' pattern='[A-Za-z0-9]{3,18}' ng-model='opinion.name' required>
+					<input class='form-control input-lg' name='name' id='name' type='text' minlength='3' maxlength='18' pattern='[A-Za-z0-9 ]{3,18}' ng-model='opinion.name' required>
 					<div class='alert alert-warning' ng-messages='opForm.name.$error' ng-show='opForm.$submitted && opForm.name.$invalid' role='alert'>
 						<div ng-message='required'>Username Cannot Be Empty!</div>
 						<div ng-message='minlength'>Username Too Short!</div>

@@ -653,6 +653,8 @@ app.put('/user/twitter', function(req, res, next) {
 
 //Insert data (user opinion) to db
 app.post('/opinion', function(req, res, next) {
+	var timeDate = new Date();
+
 	db.collection('opinion', function(err, opiCollection) {
 		if (err) {
 			res.send(err);
@@ -661,6 +663,8 @@ app.post('/opinion', function(req, res, next) {
 				name: req.body.name,
 				email: req.body.email,
 				message: req.body.message,
+				createDate: timeDate.toLocaleDateString(),
+				createTime: timeDate.toLocaleTimeString(),
 			};
 			opiCollection.insert(opinion, {w:1}, function(err) {
 				if (err) {

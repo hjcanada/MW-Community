@@ -46,7 +46,6 @@ angular.module('mwCommunity.download', ['ngRoute'])
 
 .controller('downloadCtrl', ['$scope', '$location', '$http', '$rootScope', '$window', 'imgService', function($scope, $location, $http, $rootScope, $window, imgService) {
 
-
 	imgService.getImgs().then(function(res) {
 		$scope.imgs = res.data;
 		imgService.getThumbs().then(function(res) {
