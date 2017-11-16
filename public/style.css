@@ -240,6 +240,7 @@ button {
 
 .profile .profile-form-left td {
 	height: 55px;
+	border: none;
 }
 
 .profile .profile-form-right form{
@@ -247,7 +248,8 @@ button {
 }
 
 .profile .profile-form-right td {
-	mex-height: 55px;
+	height: 55px;
+	border: none;
 }
 
 .profile .profile-form-right td .col-md-2{
