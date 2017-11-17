@@ -257,8 +257,9 @@ app.put('/reply/delete', function(req, res, next) {
 		if (err) {
 			res.send(err);
 		} else {
-			mwCollection.update({_id: ObjectId(mwId), user: user._id}, {$pull: {replies: {replyTitle: replyTitle, replyBody: replyBody}}});
-			mwCollection.update({_id: ObjectId(mwId), user: user._id}, {$set: {comments: (mwComment - 1)}});
+			mwCollection.update({_id: ObjectId(mwId)}, {$pull: {replies: {replyTitle: replyTitle, replyBody: replyBody}}});
+			mwCollection.update({_id: ObjectId(mwId)}, {$set: {comments: (mwComment - 1)}});
+			res.send();
 		}
 	});
 
