@@ -22,20 +22,8 @@ angular.module('mwCommunity.profile', ['ngRoute'])
 		$location.path('/profile/' + Math.ceil(Math.random()*10000))
 	}
 
-	$scope.switchBoolGender = function() {
-		$scope.showGender = !$scope.showGender;
-	}
-
-	$scope.switchBoolEmail = function() {
-		$scope.showEmail = !$scope.showEmail;
-	}
-
-	$scope.switchBoolFacebook = function() {
-		$scope.showFacebook = !$scope.showFacebook;
-	}
-
-	$scope.switchBoolTwitter = function() {
-		$scope.showTwitter = !$scope.showTwitter;
+	$scope.switchBool = function(value) {
+		$scope[value] = !$scope[value];
 	}
 
 	$scope.editGender = function(op) {
@@ -44,13 +32,7 @@ angular.module('mwCommunity.profile', ['ngRoute'])
 			op: op
 		};
 
-		$http.put('/user/gender', 
-			data,
-			{headers: {'authorization': $rootScope.token}}
-		).then(function() {
-			$scope.showGender = false;
-			getUser();
-		});
+		sendData('gender', data);
 	};
 
 	$scope.editEmail = function(op) {
@@ -59,13 +41,7 @@ angular.module('mwCommunity.profile', ['ngRoute'])
 			op: op
 		};
 
-		$http.put('/user/email', 
-			data,
-			{headers: {'authorization': $rootScope.token}}
-		).then(function() {
-			$scope.showEmail = false;
-			getUser();
-		});
+		sendData('email', data);
 	};
 
 	$scope.editFacebook = function(op) {
@@ -73,14 +49,8 @@ angular.module('mwCommunity.profile', ['ngRoute'])
 			facebook: $scope.facebook,
 			op: op
 		};
-
-		$http.put('/user/facebook', 
-			data,
-			{headers: {'authorization': $rootScope.token}}
-		).then(function() {
-			$scope.showFacebook = false;
-			getUser();
-		});
+		
+		sendData('facebook', data);
 	};
 
 	$scope.editTwitter = function(op) {
@@ -89,13 +59,22 @@ angular.module('mwCommunity.profile', ['ngRoute'])
 			op: op
 		};
 
-		$http.put('/user/twitter', 
-			data,
-			{headers: {'authorization': $rootScope.token}}
-		).then(function() {
-			$scope.showTwitter = false;
-			getUser();
-		});
+		sendData('twitter', data);
+	};
+
+	function sendData(str, data) {
+		if (!str) {
+			console.log("Err: string pattern is invaild");
+		} else {
+			let boolValue = 'show' + (str.charAt(0).toUpperCase() + str.slice(1));
+			$http.put('/user/'+str,
+				data,
+				{headers: {'authorization': $rootScope.token}}
+			).then(function() {
+				$scope[boolValue] = false;
+				getUser();
+			});
+		}
 	};
 
 	function getUser() {

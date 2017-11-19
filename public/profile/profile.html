@@ -57,7 +57,7 @@
 							{{ profileUser.gender }}
 						</div>
 						<div class='col-md-2'>
-							<button class='btn btn-sm btn-block' ng-click='switchBoolGender()'>Edit</button>
+							<button class='btn btn-sm btn-block' ng-click='switchBool("showGender")'>Edit</button>
 						</div>
 						<div class='col-md-2'>
 							<button class='btn btn-sm btn-block' ng-click='editGender(1)'>Delete</button>
@@ -66,7 +66,7 @@
 					<form class='row form-group'>
 						<div class='col-md-5'></div>
 						<div class='col-md-2'>
-							<button class='btn btn-sm btn-block' ng-hide='profileUser.gender || showGender' ng-click='switchBoolGender()'>Add</button>
+							<button class='btn btn-sm btn-block' ng-hide='profileUser.gender || showGender' ng-click='switchBool("showGender")'>Add</button>
 						</div>
 						<div class='col-md-5'></div>
 					</form>
@@ -81,7 +81,7 @@
 							<button class='btn btn-sm btn-block' ng-click='editGender(0)'>Save</button>
 						</div>
 						<div class='col-md-2'>
-							<button class='btn btn-sm btn-block' ng-click='switchBoolGender()'>Cancel</button>
+							<button class='btn btn-sm btn-block' ng-click='switchBool("showGender")'>Cancel</button>
 						</div>
 					</form>
 				</td>
@@ -93,7 +93,7 @@
 							{{ profileUser.email }}
 						</div>
 						<div class='col-md-2'>
-							<button class='btn btn-sm btn-block' ng-click='switchBoolEmail()'>Edit</button>
+							<button class='btn btn-sm btn-block' ng-click='switchBool("showEmail")'>Edit</button>
 						</div>
 						<div class='col-md-2'>
 							<button class='btn btn-sm btn-block' ng-click='editEmail(1)'>Delete</button>
@@ -102,7 +102,7 @@
 					<form class='row form-group'>
 						<div class='col-md-5'></div>
 						<div class='col-md-2'>
-							<button class='btn btn-sm btn-block' ng-hide='profileUser.email || showEmail' ng-click='switchBoolEmail()'>Add</button>
+							<button class='btn btn-sm btn-block' ng-hide='profileUser.email || showEmail' ng-click='switchBool("showEmail")'>Add</button>
 						</div>
 						<div class='col-md-5'></div>
 					</form>
@@ -114,7 +114,7 @@
 							<button class='btn btn-sm btn-block' ng-click='editEmail(0)'>Save</button>
 						</div>
 						<div class='col-md-2'>
-							<button class='btn btn-sm btn-block' ng-click='switchBoolEmail()'>Cancel</button>
+							<button class='btn btn-sm btn-block' ng-click='switchBool("showEmail")'>Cancel</button>
 						</div>
 					</form>
 				</td>
@@ -126,7 +126,7 @@
 							{{ profileUser.facebook }}
 						</div>
 						<div class='col-md-2'>
-							<button class='btn btn-sm btn-block' ng-click='switchBoolFacebook()'>Edit</button>
+							<button class='btn btn-sm btn-block' ng-click='switchBool("showFacebook")'>Edit</button>
 						</div>
 						<div class='col-md-2'>
 							<button class='btn btn-sm btn-block' ng-click='editFacebook(1)'>Delete</button>
@@ -135,7 +135,7 @@
 					<form class='row form-group'>
 						<div class='col-md-5'></div>
 						<div class='col-md-2'>
-							<button class='btn btn-sm btn-block' ng-hide='profileUser.facebook || showFacebook' ng-click='switchBoolFacebook()'>Add</button>
+							<button class='btn btn-sm btn-block' ng-hide='profileUser.facebook || showFacebook' ng-click='switchBool("showFacebook")'>Add</button>
 						</div>
 						<div class='col-md-5'></div>
 					</form>
@@ -147,7 +147,7 @@
 							<button class='btn btn-sm btn-block' ng-click='editFacebook(0)'>Save</button>
 						</div>
 						<div class='col-md-2'>
-							<button class='btn btn-sm btn-block' ng-click='switchBoolFacebook()'>Cancel</button>
+							<button class='btn btn-sm btn-block' ng-click='switchBool("showFacebook")'>Cancel</button>
 						</div>
 					</form>
 				</td>
@@ -159,7 +159,7 @@
 							{{ profileUser.twitter }}
 						</div>
 						<div class='col-md-2'>
-							<button class='btn btn-sm btn-block' ng-click='switchBoolTwitter()'>Edit</button>
+							<button class='btn btn-sm btn-block' ng-click='switchBool("showTwitter")'>Edit</button>
 						</div>
 						<div class='col-md-2'>
 							<button class='btn btn-sm btn-block' ng-click='editTwitter(1)'>Delete</button>
@@ -168,7 +168,7 @@
 					<form class='row form-group'>
 						<div class='col-md-5'></div>
 						<div class='col-md-2'>
-							<button class='btn btn-sm btn-block' ng-hide='profileUser.twitter || showTwitter' ng-click='switchBoolTwitter()'>Add</button>
+							<button class='btn btn-sm btn-block' ng-hide='profileUser.twitter || showTwitter' ng-click='switchBool("showTwitter")'>Add</button>
 						</div>
 						<div class='col-md-5'></div>
 					</form>
@@ -180,7 +180,7 @@
 							<button class='btn btn-sm btn-block' ng-click='editTwitter(0)'>Save</button>
 						</div>
 						<div class='col-md-2'>
-							<button class='btn btn-sm btn-block' ng-click='switchBoolTwitter()'>Cancel</button>
+							<button class='btn btn-sm btn-block' ng-click='switchBool("showTwitter")'>Cancel</button>
 						</div>
 					</form>
 				</td>
